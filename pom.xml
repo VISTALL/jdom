@@ -9,5 +9,8 @@
 
 	<modules>
 		<module>jdom-core</module>
+		<module>jdom-xpath-jaxen</module>
+		<module>jdom-to-dom</module>
+		<module>jdom-xpath-java5</module>
 	</modules>
 </project>

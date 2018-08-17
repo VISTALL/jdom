@@ -45,6 +45,11 @@
 		<developerConnection>scm:git:git@github.com:hunterhacker/jdom</developerConnection>
 	</scm>
 
+	<properties>
+		<maven.compiler.source>1.6</maven.compiler.source>
+		<maven.compiler.target>1.6</maven.compiler.target>
+	</properties>
+
 	<developers>
 		<developer>
 			<id>hunterhacker</id>

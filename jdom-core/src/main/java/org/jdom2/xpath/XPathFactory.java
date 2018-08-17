@@ -56,6 +56,7 @@ package org.jdom2.xpath;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.ServiceLoader;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.jdom2.JDOMConstants;
@@ -64,7 +65,6 @@ import org.jdom2.filter.Filter;
 import org.jdom2.filter.Filters;
 import org.jdom2.internal.ReflectionConstructor;
 import org.jdom2.internal.SystemProperty;
-import org.jdom2.xpath.jaxen.JaxenXPathFactory;
 
 /**
  * XPathFactory allows JDOM users to configure which XPath implementation to use
@@ -111,19 +111,34 @@ public abstract class XPathFactory {
 	 * The default mechanism will inspect the system property (only once)
 	 * {@link JDOMConstants#JDOM2_PROPERTY_XPATH_FACTORY} to determine what
 	 * class should be used for the XPathFactory. If that property is not set
-	 * then JDOM will use the {@link JaxenXPathFactory}.
+	 * then JDOM will search implementation via ServiceLoader
 	 * 
 	 * @return the default XPathFactory instance
 	 */
-	public static final XPathFactory instance() {
+	public static XPathFactory instance() {
 		final XPathFactory ret = defaultreference.get();
 		if (ret != null) {
 			return ret;
 		}
-		XPathFactory fac = DEFAULTFACTORY == null ? new JaxenXPathFactory()
-				: newInstance(DEFAULTFACTORY);
-		if (defaultreference.compareAndSet(null, fac)) {
-			return fac;
+		XPathFactory factory = null;
+		if(DEFAULTFACTORY == null) {
+			ServiceLoader<XPathFactory> loader = ServiceLoader.load(XPathFactory.class, XPathFactory.class.getClassLoader());
+			for(XPathFactory pathFactory : loader) {
+				factory = pathFactory;
+				break;
+			}
+
+			if(factory == null) {
+				throw new IllegalArgumentException("Missing XPathFactory implementation. Please set " + JDOMConstants.JDOM2_PROPERTY_XPATH_FACTORY
+						+ " property, or add to classpath org.jdom:jdom-xpath-jaxen dependency");
+			}
+		}
+		else {
+			factory = newInstance(DEFAULTFACTORY);
+		}
+
+		if (defaultreference.compareAndSet(null, factory)) {
+			return factory;
 		}
 		// someone else installed a different instance before we added ours.
 		// return that other instance.
