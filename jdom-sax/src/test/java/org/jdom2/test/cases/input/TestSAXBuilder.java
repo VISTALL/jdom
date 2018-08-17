@@ -128,12 +128,12 @@ public final class TestSAXBuilder {
 		public MySAXBuilder() {
 			super();
 		}
-		
+
 		@SuppressWarnings("deprecation")
 		public MySAXBuilder(String driver) {
-			super(driver);
+			super(new XMLReaderSAX2Factory(true, driver));
 		}
-		
+
 		public MySAXBuilder(XMLReaderJDOMFactory fac) {
 			super(fac);
 		}
@@ -266,7 +266,7 @@ public final class TestSAXBuilder {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testSAXBuilderStringTrue() {
-		SAXBuilder sb = new SAXBuilder("org.apache.xerces.parsers.SAXParser", true);
+		SAXBuilder sb = new SAXBuilder(new XMLReaderSAX2Factory(true, "org.apache.xerces.parsers.SAXParser"));
 		assertEquals("org.apache.xerces.parsers.SAXParser", sb.getDriverClass());
 		assertTrue(sb.getEntityResolver() == null);
 		assertTrue(sb.getDTDHandler() == null);
@@ -278,7 +278,7 @@ public final class TestSAXBuilder {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testSAXBuilderStringFalse() {
-		SAXBuilder sb = new SAXBuilder("org.apache.xerces.parsers.SAXParser", false);
+		SAXBuilder sb = new SAXBuilder(new XMLReaderSAX2Factory(false, "org.apache.xerces.parsers.SAXParser"));
 		assertEquals("org.apache.xerces.parsers.SAXParser", sb.getDriverClass());
 		assertTrue(sb.getEntityResolver() == null);
 		assertTrue(sb.getDTDHandler() == null);

@@ -8,10 +8,90 @@
 	<version>3.0-SNAPSHOT</version>
 
 	<properties>
-		<maven.compiler.source>1.6</maven.compiler.source>
-		<maven.compiler.target>1.6</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>consulo</id>
+			<url>https://maven.consulo.io/repository/snapshots/</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<profiles>
+		<profile>
+			<id>java9-force</id>
+			<activation>
+				<property>
+					<name>force.java9.compilation</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<properties>
+				<maven.compiler.source>9</maven.compiler.source>
+				<maven.compiler.target>9</maven.compiler.target>
+			</properties>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>consulo.maven</groupId>
+							<artifactId>java9-maven-plugin</artifactId>
+							<version>1.0-SNAPSHOT</version>
+							<extensions>true</extensions>
+							<executions>
+								<execution>
+									<id>java9</id>
+									<phase>process-sources</phase>
+									<goals>
+										<goal>generate-source-module-info</goal>
+									</goals>
+								</execution>
+							</executions>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+
+		<profile>
+			<id>java9-force-unset</id>
+			<activation>
+				<property>
+					<name>!force.java9.compilation</name>
+				</property>
+			</activation>
+			<properties>
+				<maven.compiler.source>1.6</maven.compiler.source>
+				<maven.compiler.target>1.6</maven.compiler.target>
+			</properties>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>consulo.maven</groupId>
+							<artifactId>java9-maven-plugin</artifactId>
+							<version>1.0-SNAPSHOT</version>
+							<extensions>true</extensions>
+							<executions>
+								<execution>
+									<id>pre-java9</id>
+									<phase>process-classes</phase>
+									<goals>
+										<goal>generate-binary-module-info-nocheck</goal>
+									</goals>
+								</execution>
+							</executions>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+	</profiles>
 
 	<modules>
 		<module>jdom-core</module>

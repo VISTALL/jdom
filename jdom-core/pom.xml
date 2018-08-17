@@ -58,12 +58,6 @@
 		<developerConnection>scm:git:git@github.com:hunterhacker/jdom</developerConnection>
 	</scm>
 
-	<properties>
-		<maven.compiler.source>1.6</maven.compiler.source>
-		<maven.compiler.target>1.6</maven.compiler.target>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
-
 	<developers>
 		<developer>
 			<id>hunterhacker</id>
@@ -76,6 +70,57 @@
 			<email>jdom@tuis.net</email>
 		</developer>
 	</developers>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>consulo.maven</groupId>
+				<artifactId>java9-maven-plugin</artifactId>
+				<version>1.0-SNAPSHOT</version>
+				<extensions>true</extensions>
+				<configuration>
+					<module>
+						<open>true</open>
+						<name>org.jdom2</name>
+						<requires>
+							<require>
+								<module>java.xml</module>
+							</require>
+						</requires>
+						<exports>
+							<export>
+								<package>org.jdom2</package>
+							</export>
+							<export>
+								<package>org.jdom2.adapters</package>
+							</export>
+							<export>
+								<package>org.jdom2.filter</package>
+							</export>
+							<export>
+								<package>org.jdom2.input</package>
+							</export>
+							<export>
+								<package>org.jdom2.located</package>
+							</export>
+							<export>
+								<package>org.jdom2.output</package>
+							</export>
+							<export>
+								<package>org.jdom2.transform</package>
+							</export>
+							<export>
+								<package>org.jdom2.util</package>
+							</export>
+							<export>
+								<package>org.jdom2.xpath</package>
+							</export>
+						</exports>
+					</module>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 	<dependencies>
 		<dependency>
