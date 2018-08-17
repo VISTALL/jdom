@@ -112,6 +112,7 @@
 		<module>jdom-contrib</module>
 		<module>jdom-xpath-jaxen</module>
 		<module>jdom-xpath-java5</module>
+		<module>jdom-xpath-java5-test</module>
 		<module>jdom-xpath-xalan</module>
 		<module>jdom-to-dom</module>
 	</modules>

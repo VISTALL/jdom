@@ -115,6 +115,12 @@
 							<export>
 								<package>org.jdom2.xpath</package>
 							</export>
+							<export>
+								<package>org.jdom2.xpath.util</package>
+							</export>
+							<export>
+								<package>org.jdom2.internal</package>
+							</export>
 						</exports>
 					</module>
 				</configuration>
