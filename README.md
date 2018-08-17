@@ -1,4 +1,4 @@
-Introduction to the JDOM project
+Introduction to the JDOM project [![Build Status](https://travis-ci.org/consulo/jdom.svg?branch=maven)](https://travis-ci.org/consulo/jdom)
 ================================
 
 Please see the JDOM web site at http://jdom.org/
