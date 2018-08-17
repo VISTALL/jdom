@@ -94,8 +94,6 @@ class NamespacePointer implements NamespaceAware {
 		return namespace;
 	}
 
-
-
 	@Override
 	public List<Namespace> getNamespacesInScope() {
 		return null;

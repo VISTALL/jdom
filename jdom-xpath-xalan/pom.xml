@@ -1,10 +1,10 @@
 <project>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jdom</groupId>
-	<artifactId>jdom-xpath-jaxen</artifactId>
+	<artifactId>jdom-xpath-xalan</artifactId>
 	<packaging>jar</packaging>
 
-	<name>JDOM XPath - Jaxen implementation</name>
+	<name>JDOM XPath - Xalan implementation</name>
 	<version>3.0-SNAPSHOT</version>
 
 	<properties>
@@ -19,9 +19,14 @@
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>jaxen</groupId>
-			<artifactId>jaxen</artifactId>
-			<version>1.1.6</version>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>jdom-to-dom</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>xalan</groupId>
+			<artifactId>xalan</artifactId>
+			<version>2.7.2</version>
 		</dependency>
 	</dependencies>
 </project>
