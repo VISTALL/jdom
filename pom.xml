@@ -9,6 +9,7 @@
 
 	<modules>
 		<module>jdom-core</module>
+		<module>jdom-sax</module>
 		<module>jdom-core-test</module>
 		<module>jdom-xpath-jaxen</module>
 		<module>jdom-xpath-java5</module>
