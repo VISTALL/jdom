@@ -73,7 +73,7 @@ import org.jdom2.JDOMException;
  * @see org.jdom2.input.sax
  * @author Rolf Lear
  *
- * @deprecated since 9, due  org.xml.sax.helpers.XMLReaderFactory deprecation
+ * @deprecated since 9, due org.xml.sax.helpers.XMLReaderFactory deprecation
  */
 @Deprecated
 public class XMLReaderSAX2Factory implements XMLReaderJDOMFactory {
