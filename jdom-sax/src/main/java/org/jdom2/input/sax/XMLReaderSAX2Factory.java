@@ -76,7 +76,7 @@ import org.jdom2.JDOMException;
  * @deprecated since 9, due org.xml.sax.helpers.XMLReaderFactory deprecation
  */
 @Deprecated
-public class XMLReaderSAX2Factory implements XMLReaderJDOMFactory {
+public class XMLReaderSAX2Factory implements XMLReaderJDOMFactoryEx {
 
 	private final boolean validate;
 	private final String saxdriver;

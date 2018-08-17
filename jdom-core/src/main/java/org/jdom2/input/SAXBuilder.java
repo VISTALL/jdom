@@ -68,6 +68,14 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.jdom2.DefaultJDOMFactory;
+import org.jdom2.DocType;
+import org.jdom2.Document;
+import org.jdom2.EntityRef;
+import org.jdom2.JDOMException;
+import org.jdom2.JDOMFactory;
+import org.jdom2.Verifier;
+import org.jdom2.input.sax.*;
 import org.xml.sax.DTDHandler;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.ErrorHandler;
@@ -77,23 +85,6 @@ import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;
 import org.xml.sax.XMLFilter;
 import org.xml.sax.XMLReader;
-
-import org.jdom2.DefaultJDOMFactory;
-import org.jdom2.DocType;
-import org.jdom2.Document;
-import org.jdom2.EntityRef;
-import org.jdom2.JDOMException;
-import org.jdom2.JDOMFactory;
-import org.jdom2.Verifier;
-import org.jdom2.input.sax.BuilderErrorHandler;
-import org.jdom2.input.sax.DefaultSAXHandlerFactory;
-import org.jdom2.input.sax.SAXBuilderEngine;
-import org.jdom2.input.sax.SAXEngine;
-import org.jdom2.input.sax.SAXHandler;
-import org.jdom2.input.sax.SAXHandlerFactory;
-import org.jdom2.input.sax.XMLReaderJDOMFactory;
-import org.jdom2.input.sax.XMLReaderSAX2Factory;
-import org.jdom2.input.sax.XMLReaders;
 
 /**
  * Builds a JDOM Document using a SAX parser.
@@ -248,48 +239,6 @@ public class SAXBuilder implements SAXEngine {
 	}
 
 	/**
-	 * Creates a new SAXBuilder using the specified SAX parser. The underlying
-	 * parser will not validate.
-	 * 
-	 * @see SAXBuilder#SAXBuilder(XMLReaderJDOMFactory, SAXHandlerFactory,
-	 *      JDOMFactory)
-	 * @see XMLReaderSAX2Factory
-	 * @see DefaultSAXHandlerFactory
-	 * @see DefaultJDOMFactory
-	 * @see org.jdom2.input.sax for important details on SAXBuilder
-	 * @param saxDriverClass
-	 *        <code>String</code> name of SAX Driver to use for parsing.
-	 * @deprecated use {@link SAXBuilder#SAXBuilder(XMLReaderJDOMFactory)} with 
-	 *        {@link XMLReaderSAX2Factory#XMLReaderSAX2Factory(boolean, String)}
-	 */
-	@Deprecated
-	public SAXBuilder(final String saxDriverClass) {
-		this(saxDriverClass, false);
-	}
-
-	/**
-	 * Creates a new SAXBuilder using the specified SAX2.0 parser source. The
-	 * underlying parser will validate or not according to the given parameter.
-	 * 
-	 * @see SAXBuilder#SAXBuilder(XMLReaderJDOMFactory, SAXHandlerFactory,
-	 *      JDOMFactory)
-	 * @see XMLReaderSAX2Factory
-	 * @see DefaultSAXHandlerFactory
-	 * @see DefaultJDOMFactory
-	 * @see org.jdom2.input.sax for important details on SAXBuilder
-	 * @param saxDriverClass
-	 *        <code>String</code> name of SAX Driver to use for parsing.
-	 * @param validate
-	 *        <code>boolean</code> indicating if validation should occur.
-	 * @deprecated use {@link SAXBuilder#SAXBuilder(XMLReaderJDOMFactory)} with 
-	 *        {@link XMLReaderSAX2Factory#XMLReaderSAX2Factory(boolean, String)}
-	 */
-	@Deprecated
-	public SAXBuilder(final String saxDriverClass, final boolean validate) {
-		this(new XMLReaderSAX2Factory(validate, saxDriverClass), null, null);
-	}
-
-	/**
 	 * Creates a new SAXBuilder with the specified XMLReaderJDOMFactory.
 	 * <p>
 	 * 
@@ -358,8 +307,8 @@ public class SAXBuilder implements SAXEngine {
 	 */
 	@Deprecated
 	public String getDriverClass() {
-		if (readerfac instanceof XMLReaderSAX2Factory) {
-			return ((XMLReaderSAX2Factory) readerfac).getDriverClassName();
+		if (readerfac instanceof XMLReaderJDOMFactoryEx) {
+			return ((XMLReaderJDOMFactoryEx) readerfac).getDriverClassName();
 		}
 		return null;
 	}
