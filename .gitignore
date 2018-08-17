@@ -6,3 +6,6 @@
 /cobertura.ser
 /build.properties
 /bin
+.consulo/
+.idea/
+target/
