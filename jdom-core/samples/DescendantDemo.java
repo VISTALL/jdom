@@ -56,11 +56,11 @@
 
 import java.util.*;
 
-import org.jdom2.*;
-import org.jdom2.filter.ElementFilter;
-import org.jdom2.filter.Filters;
-import org.jdom2.input.*;
-import org.jdom2.output.*;
+import org.jdom.*;
+import org.jdom.filter.ElementFilter;
+import org.jdom.filter.Filters;
+import org.jdom.input.*;
+import org.jdom.output.*;
 
 /**
  * Demonstrates the use of {@link Parent#getDescendants}.

@@ -42,10 +42,10 @@
 
 import java.sql.*;
 
-import org.jdom2.*;
-import org.jdom2.output.*;
+import org.jdom.*;
+import org.jdom.output.*;
 
-import org.jdom2.contrib.input.ResultSetBuilder;
+import org.jdom.contrib.input.ResultSetBuilder;
 
 @SuppressWarnings("javadoc")
 public class ResultSetBuilderDemo {

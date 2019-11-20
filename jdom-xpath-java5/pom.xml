@@ -13,38 +13,6 @@
 	<name>JDOM XPath - Java 5 implementation</name>
 	<version>3.0-SNAPSHOT</version>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>consulo.maven</groupId>
-				<artifactId>java9-maven-plugin</artifactId>
-				<version>1.0-SNAPSHOT</version>
-				<extensions>true</extensions>
-				<configuration>
-					<module>
-						<name>org.jdom2.xpath.java5</name>
-						<requires>
-							<require>
-								<module>org.jdom2</module>
-							</require>
-							<require>
-								<module>org.jdom2.to.dom</module>
-							</require>
-							<require>
-								<module>java.xml</module>
-							</require>
-						</requires>
-						<exports>
-							<export>
-								<package>org.jdom2.contrib.xpath.java</package>
-							</export>
-						</exports>
-					</module>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>

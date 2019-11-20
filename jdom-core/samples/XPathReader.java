@@ -56,10 +56,10 @@
 
 import java.io.*;
 import java.util.*;
-import org.jdom2.*;
-import org.jdom2.filter.Filters;
-import org.jdom2.input.*;
-import org.jdom2.xpath.*;
+import org.jdom.*;
+import org.jdom.filter.Filters;
+import org.jdom.input.*;
+import org.jdom.xpath.*;
 
 /**
  * <p><code>XPathReader</code> demonstrates how to
