@@ -14,4 +14,6 @@ open module org.jdom {
     exports org.jdom.xpath;
     exports org.jdom.xpath.util;
     exports org.jdom.internal;
+
+    uses org.jdom.xpath.XPathFactory;
 }
