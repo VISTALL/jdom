@@ -9,6 +9,7 @@ open module org.jdom {
     exports org.jdom.input.stax;
     exports org.jdom.located;
     exports org.jdom.output;
+    exports org.jdom.output.support;
     exports org.jdom.transform;
     exports org.jdom.util;
     exports org.jdom.xpath;
